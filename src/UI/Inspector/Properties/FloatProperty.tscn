@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dd555m5108g6m"]
+
+[ext_resource type="PackedScene" uid="uid://bdsbmrub1avmq" path="res://src/UI/Inspector/Properties/Property.tscn" id="1_2w5iv"]
+[ext_resource type="Script" path="res://src/UI/Inspector/Properties/FloatProperty.gd" id="2_2h0id"]
+
+[node name="Property" instance=ExtResource("1_2w5iv")]
+script = ExtResource("2_2h0id")
+
+[node name="SpinBox" type="SpinBox" parent="." index="1"]
+layout_mode = 2

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyh5ox6h5l56g"]
+
+[ext_resource type="PackedScene" uid="uid://bdsbmrub1avmq" path="res://src/UI/Inspector/Properties/Property.tscn" id="1_sulff"]
+[ext_resource type="Script" path="res://src/UI/Inspector/Properties/IntProperty.gd" id="2_4qtv8"]
+
+[node name="Property" instance=ExtResource("1_sulff")]
+script = ExtResource("2_4qtv8")
+
+[node name="SpinBox" type="SpinBox" parent="." index="1"]
+layout_mode = 2
+
+[node name="Enums" type="OptionButton" parent="." index="2"]
+layout_mode = 2

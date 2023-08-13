@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://dv0tgpn6gny6g"]
+
+[ext_resource type="PackedScene" uid="uid://bdsbmrub1avmq" path="res://src/UI/Inspector/Properties/Property.tscn" id="1_3jpnw"]
+[ext_resource type="Script" path="res://src/UI/Inspector/Properties/StringProperty.gd" id="2_aa5wu"]
+[ext_resource type="Texture2D" uid="uid://uqcryarefd3h" path="res://assets/Common/Folder.png" id="3_xoudt"]
+
+[node name="Property" instance=ExtResource("1_3jpnw")]
+script = ExtResource("2_aa5wu")
+
+[node name="Editors" type="VBoxContainer" parent="." index="1"]
+layout_mode = 2
+
+[node name="Inputs" type="HBoxContainer" parent="Editors" index="0"]
+layout_mode = 2
+
+[node name="Multiline" type="TextEdit" parent="Editors/Inputs" index="0"]
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+size_flags_horizontal = 3
+wrap_mode = 1
+
+[node name="LineEdit" type="LineEdit" parent="Editors/Inputs" index="1"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OpenFileDialogue" type="Button" parent="Editors/Inputs" index="2"]
+layout_mode = 2
+icon = ExtResource("3_xoudt")
+
+[node name="Expression" type="Label" parent="Editors" index="1"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.556863, 0.556863, 0.556863, 1)
+text = "Expression"

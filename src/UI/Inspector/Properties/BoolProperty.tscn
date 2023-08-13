@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcc0um238d4d2"]
+
+[ext_resource type="PackedScene" uid="uid://bdsbmrub1avmq" path="res://src/UI/Inspector/Properties/Property.tscn" id="1_4qcvj"]
+[ext_resource type="Script" path="res://src/UI/Inspector/Properties/BoolProperty.gd" id="2_a2hsm"]
+
+[node name="Property" instance=ExtResource("1_4qcvj")]
+script = ExtResource("2_a2hsm")
+
+[node name="CheckBox" type="CheckBox" parent="." index="1"]
+layout_mode = 2
+text = "On"

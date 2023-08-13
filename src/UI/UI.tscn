@@ -1,0 +1,144 @@
+[gd_scene load_steps=8 format=3 uid="uid://c5gkrp01wxdpe"]
+
+[ext_resource type="Script" path="res://src/UI/Layers/Layers.gd" id="1_2vqa1"]
+[ext_resource type="Script" path="res://src/UI/UI.gd" id="1_l76hq"]
+[ext_resource type="Script" path="res://src/UI/Stack/Stack.gd" id="1_ly35d"]
+[ext_resource type="Script" path="res://src/UI/CurrentFrameDrawer.gd" id="4_bb7hw"]
+[ext_resource type="Script" path="res://src/UI/RenderVP.gd" id="4_if3tr"]
+[ext_resource type="PackedScene" uid="uid://t0nrtds0u1vk" path="res://src/UI/Dialogs/CardsPicker.tscn" id="5_x8cdx"]
+[ext_resource type="Script" path="res://src/UI/Dialogs.gd" id="6_1sehf"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+script = ExtResource("1_l76hq")
+
+[node name="Margins" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Margins"]
+layout_mode = 2
+
+[node name="LeftAndRight" type="HSplitContainer" parent="Margins/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LeftAndViewport" type="HSplitContainer" parent="Margins/VBoxContainer/LeftAndRight"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Left" type="TabContainer" parent="Margins/VBoxContainer/LeftAndRight/LeftAndViewport"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.33
+theme_override_constants/side_margin = 0
+
+[node name="Stack" type="MarginContainer" parent="Margins/VBoxContainer/LeftAndRight/LeftAndViewport/Left"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+script = ExtResource("1_ly35d")
+
+[node name="Container" type="VBoxContainer" parent="Margins/VBoxContainer/LeftAndRight/LeftAndViewport/Left/Stack"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Margins/VBoxContainer/LeftAndRight/LeftAndViewport/Left/Stack/Container"]
+layout_mode = 2
+
+[node name="AddCardBtn" type="Button" parent="Margins/VBoxContainer/LeftAndRight/LeftAndViewport/Left/Stack/Container/HBoxContainer"]
+layout_mode = 2
+text = "Add Card"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Margins/VBoxContainer/LeftAndRight/LeftAndViewport/Left/Stack/Container"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CardsContainer" type="VBoxContainer" parent="Margins/VBoxContainer/LeftAndRight/LeftAndViewport/Left/Stack/Container/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Layers" type="MarginContainer" parent="Margins/VBoxContainer/LeftAndRight/LeftAndViewport/Left"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+script = ExtResource("1_2vqa1")
+
+[node name="Container" type="VBoxContainer" parent="Margins/VBoxContainer/LeftAndRight/LeftAndViewport/Left/Layers"]
+layout_mode = 2
+
+[node name="LayerCreator" type="HBoxContainer" parent="Margins/VBoxContainer/LeftAndRight/LeftAndViewport/Left/Layers/Container"]
+layout_mode = 2
+
+[node name="LayerNameEdit" type="LineEdit" parent="Margins/VBoxContainer/LeftAndRight/LeftAndViewport/Left/Layers/Container/LayerCreator"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Layer Name (Optional)"
+clear_button_enabled = true
+
+[node name="AddBtn" type="Button" parent="Margins/VBoxContainer/LeftAndRight/LeftAndViewport/Left/Layers/Container/LayerCreator"]
+layout_mode = 2
+text = "Add"
+
+[node name="LayerTree" type="Tree" parent="Margins/VBoxContainer/LeftAndRight/LeftAndViewport/Left/Layers/Container"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Margins/VBoxContainer/LeftAndRight/LeftAndViewport"]
+layout_mode = 2
+size_flags_horizontal = 3
+stretch = true
+
+[node name="RenderVP" type="SubViewport" parent="Margins/VBoxContainer/LeftAndRight/LeftAndViewport/SubViewportContainer"]
+unique_name_in_owner = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(861, 648)
+render_target_update_mode = 4
+script = ExtResource("4_if3tr")
+
+[node name="Output" type="SubViewportContainer" parent="Margins/VBoxContainer/LeftAndRight/LeftAndViewport/SubViewportContainer/RenderVP"]
+custom_minimum_size = Vector2(32, 32)
+offset_right = 32.0
+offset_bottom = 32.0
+stretch = true
+
+[node name="CurrentFrameVP" type="SubViewport" parent="Margins/VBoxContainer/LeftAndRight/LeftAndViewport/SubViewportContainer/RenderVP/Output"]
+handle_input_locally = false
+size = Vector2i(32, 32)
+render_target_update_mode = 4
+
+[node name="CurrentFrameDrawer" type="Node2D" parent="Margins/VBoxContainer/LeftAndRight/LeftAndViewport/SubViewportContainer/RenderVP/Output/CurrentFrameVP"]
+script = ExtResource("4_bb7hw")
+
+[node name="Camera2D" type="Camera2D" parent="Margins/VBoxContainer/LeftAndRight/LeftAndViewport/SubViewportContainer/RenderVP"]
+zoom = Vector2(6, 6)
+
+[node name="Dialogs" type="Control" parent="."]
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("6_1sehf")
+
+[node name="CardsPicker" parent="Dialogs" instance=ExtResource("5_x8cdx")]
+title = "Pick Your Card"
+initial_position = 1
+visible = false
+exclusive = true
+always_on_top = true
+min_size = Vector2i(200, 200)
+
+[connection signal="pressed" from="Margins/VBoxContainer/LeftAndRight/LeftAndViewport/Left/Stack/Container/HBoxContainer/AddCardBtn" to="Margins/VBoxContainer/LeftAndRight/LeftAndViewport/Left/Stack" method="_on_add_card_btn_pressed"]
